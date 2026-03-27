@@ -14,4 +14,5 @@ A python program made to register the sales, and modify them while also storing 
 - Allows the client to exit whenever they want.
 ## ► Flowchart
 - Flowchart to show the program flow and functions.
-<img width="12660" height="8042" alt="Flowchart Week 3" src="https://github.com/user-attachments/assets/b4b354bf-ab44-4be6-9a39-fe7c8707b277" />
+- <img width="12660" height="7989" alt="Diagrama en blanco" src="https://github.com/user-attachments/assets/f74f80e2-18aa-428e-8f2e-4a3c99f1c76b" />
+
