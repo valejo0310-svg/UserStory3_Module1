@@ -206,3 +206,59 @@ def delete_product():
             return # Stop after finding the product, whether deleted or not
 
     print(f" Product '{name}' not found.\n")
+    def calculate_statistics():
+    """
+    Compute and display summary statistics for the current inventory.
+
+    Calculates:
+        - Total units across all products.
+        - Total inventory value (price × quantity per product).
+        - The most expensive product by unit price.
+        - The product with the highest stock quantity.
+        - All products sorted by price (descending).
+        - All products sorted by quantity (descending).
+
+    If the inventory is empty, notifies the user and returns early.
+    """
+    if not inventary:
+        print("  No products to calculate statistics.\n")
+        return
+
+    total_units = 0
+    total_value = 0
+    most_expensive = inventary[0] # Start with the first product as baseline
+    most_stock = inventary[0]
+
+    for product in inventary:
+        total_units += product["quantity"]
+        total_value += product["price"] * product["quantity"]
+
+        # Update most expensive if current product has a higher price
+        if product["price"] > most_expensive["price"]:
+            most_expensive = product
+
+        # Update highest stock if current product has more units
+        if product["quantity"] > most_stock["quantity"]:
+            most_stock = product
+
+    # Sort copies of the list — does not modify the original inventory
+    sorted_by_price    = sorted(inventary, key=lambda p: p["price"],    reverse=True)
+    sorted_by_quantity = sorted(inventary, key=lambda p: p["quantity"], reverse=True)
+
+    print("\n" + "=" * 60)
+    print("  INVENTORY STATISTICS")
+    print("-" * 60)
+    print(f"  Total units in stock  : {total_units}")
+    print(f"  Total inventory value : ${total_value:.2f}")
+    print(f"  Most expensive product: {most_expensive['name']} (${most_expensive['price']:.2f})")
+    print(f"  Highest stock product : {most_stock['name']} ({most_stock['quantity']} units)")
+
+    print("\n--- Products sorted by price (high to low) ---")
+    for product in sorted_by_price:
+        print(f"  {product['name']} — ${product['price']:.2f}")
+
+    print("\n--- Products sorted by quantity (high to low) ---")
+    for product in sorted_by_quantity:
+        print(f"  {product['name']} — {product['quantity']} units")
+
+    print("=" * 60)
